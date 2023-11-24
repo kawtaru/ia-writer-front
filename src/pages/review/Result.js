@@ -40,7 +40,7 @@ const FormLayoutsResult = ({
     saveAs(blob, 'Review.docx')
   }
 
-  
+
   return (
     <>
       <Card>
@@ -145,19 +145,21 @@ const FormLayoutsResult = ({
           </>
         )}
         <br />
-
         {references && (
           <>
             <CardHeader title='References' titleTypographyProps={{ variant: 'h6' }} />
             <CardContent>
               <Grid container spacing={5}>
-                <Grid item xs={12}>
-                  {references}
-                </Grid>
+              <Grid item xs={12}>
+          {references.split('\n').map((reference, index) => (
+            <div key={index}>{reference}</div>
+          ))}
+        </Grid>
               </Grid>
             </CardContent>
           </>
         )}
+
       </Card>
       <br />
       <Grid item xs={12}>
