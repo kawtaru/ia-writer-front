@@ -17,8 +17,8 @@ const FormLayoutsResult = ({
   conclusion,
   references
 }) => {
-  const downloadDocument = () => {
-    const content = `
+ const downloadDocument = () => {
+     const content = `
       <div>
         ${title && `<h3>Title</h3><p>${title}</p>`}
         ${abstract && `<h3>Abstract</h3><p>${abstract}</p>`}
@@ -27,7 +27,7 @@ const FormLayoutsResult = ({
         ${existingWorks && `<h3>Existing Works</h3><p>${existingWorks}</p>`}
         ${comparaison && `<h3>Comparison with other works</h3><p>${comparaison}</p>`}
         ${conclusion && `<h3>Conclusion</h3><p>${conclusion}</p>`}
-        ${references && `<h3>References</h3><p>${references}</p>`}
+        ${references && `<h3>References</h3><p>${references.replace(/\n/g, '<br/>')}</p>`}
       </div>
     `
 
@@ -146,19 +146,18 @@ const FormLayoutsResult = ({
         )}
         <br />
         {references && (
-          <>
-            <CardHeader title='References' titleTypographyProps={{ variant: 'h6' }} />
-            <CardContent>
-              <Grid container spacing={5}>
-              <Grid item xs={12}>
-          {references.split('\n').map((reference, index) => (
-            <div key={index}>{reference}</div>
-          ))}
+  <>
+    <CardHeader title='References' titleTypographyProps={{ variant: 'h6' }} />
+    <CardContent>
+      <Grid container spacing={5}>
+        <Grid item xs={12}>
+          <div dangerouslySetInnerHTML={{ __html: references.replace(/\n/g, '<br/>') }} />
         </Grid>
-              </Grid>
-            </CardContent>
-          </>
-        )}
+      </Grid>
+    </CardContent>
+  </>
+)}
+
 
       </Card>
       <br />
