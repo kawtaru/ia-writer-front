@@ -124,7 +124,8 @@ const FormLayoutsResult = ({
             <CardContent>
               <Grid container spacing={5}>
                 <Grid item xs={12}>
-                  {comparaison}
+                <div 
+            dangerouslySetInnerHTML={{__html: comparaison }}/>
                 </Grid>
               </Grid>
             </CardContent>

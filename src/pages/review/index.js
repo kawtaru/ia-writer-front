@@ -64,13 +64,13 @@ const FormLayouts = ({}) => {
   };
 
   setTitle(await makeApiCall(`Generate a title from this text: \n ${text} \n`));
-  setAbstract(await makeApiCall(`Generate an abstract from this text: \n ${text} \n`));
+  setAbstract(await makeApiCall(`Generate an abstract from this text: \n ${text} \n limit 100 words`));
   setKeywords(await makeApiCall(`Generate keywords from this text: \n ${text} \n`));
-  setIntroduction(await makeApiCall(`Generate a detailed introduction from this text: \n ${text} \n`));
+  setIntroduction(await makeApiCall(`Generate a detailed introduction from this text: \n ${text} \n limit 200 words`));
   setExistingWorks(await makeApiCall(`Provide an analysis and elaborate on the existing literature, offering more details and insights into the current body of work from this text: \n ${text} \n`));
-  setComparaison(await makeApiCall(`Conduct a comparison with another piece of work, offering a detailed examination of similarities, differences, and notable aspects from this text: \n ${text} \n`));
-  setConclusion(await makeApiCall(`Generate a detailed conclusion from this text: \n ${text} \n`));
-  setReferences(await makeApiCall(`Generate the references from this text: \n ${text} \n and separate them with <br />`));
+  setComparaison(await makeApiCall(`Generate a detailed comparative of existing works that includes the following elements: reference of existing works, domain, utilized approach, target population, methodology, and results from this text: \n ${text} \n only formatted to an html code table to display it in html page. Only the html table as a result, without introduction. result must be between <table border="1"> and </table>`));
+  setConclusion(await makeApiCall(`Generate a detailed conclusion from this text: \n ${text} \n limit 200 words`));
+  setReferences(await makeApiCall(`Generate references from this text: \n ${text} \n and separate them with <br />`));
 
   // Calls end
 
@@ -80,13 +80,13 @@ const FormLayouts = ({}) => {
   return (
     <DatePickerWrapper>
       <Grid container spacing={6}>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={5}>
           <FormLayoutsReview
             loading={loading}
             onCheck={(text) => checkText(text)}
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={7}>
           <Snackbar
             open={openError}
             anchorOrigin={{ vertical: "top", horizontal: "right" }}
